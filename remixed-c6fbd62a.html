@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditi Bhalla — AI Product Owner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5F0E8;
+  --ink: #1A1208;
+  --warm: #C4956A;
+  --muted: #8A7968;
+  --accent: #D4AF37;
+  --light: #EDE8DF;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 60px; transition: background 0.4s, padding 0.4s; }
+nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); padding: 16px 60px; border-bottom: 1px solid var(--light); }
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--ink); cursor: pointer; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; cursor: pointer; position: relative; transition: color 0.3s; }
+.nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--warm); transition: width 0.3s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+
+/* HERO */
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+.hero-left { display: flex; flex-direction: column; justify-content: center; padding: 140px 60px 80px; z-index: 2; }
+.hero-tag { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm); font-weight: 500; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
+.hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 5.5vw, 86px); font-weight: 300; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 16px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s; }
+.hero-name em { font-style: italic; color: var(--warm); display: block; }
+.hero-role { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 300; color: var(--muted); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.7s; }
+.hero-desc { font-size: 14px; color: var(--muted); max-width: 440px; line-height: 1.85; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.9s; }
+.hero-contact { display: flex; flex-direction: column; gap: 10px; opacity: 0; animation: fadeUp 0.8s ease forwards 1.0s; }
+.hero-contact span { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+.hero-contact a { color: var(--warm); text-decoration: none; }
+.hero-contact a:hover { text-decoration: underline; }
+.hero-right { position: relative; overflow: hidden; opacity: 0; animation: fadeIn 1.2s ease forwards 0.6s; }
+.hero-photo-wrap { position: absolute; inset: 0; background: linear-gradient(135deg, #E8DDD0, #D4C8B8); display: flex; align-items: center; justify-content: center; }
+.hero-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, var(--cream) 0%, rgba(245,240,232,0.05) 40%); }
+.hero-initials { font-family: 'Cormorant Garamond', serif; font-size: 180px; font-weight: 300; color: rgba(255,255,255,0.25); user-select: none; display: none; }
+
+/* TICKER */
+.ticker { background: var(--ink); padding: 13px 0; overflow: hidden; white-space: nowrap; }
+.ticker-track { display: inline-block; animation: ticker 30s linear infinite; }
+.ticker-track span { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,232,0.55); margin-right: 52px; }
+.ticker-track .dot { color: var(--warm); opacity: 1; }
+
+/* SECTIONS */
+.section { padding: 96px 60px; }
+.sec-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm); font-weight: 500; margin-bottom: 44px; display: flex; align-items: center; gap: 14px; }
+.sec-label::after { content: ''; width: 46px; height: 1px; background: var(--warm); opacity: 0.4; }
+.sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 3.8vw, 52px); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 52px; }
+.sec-title em { font-style: italic; color: var(--warm); }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 72px; align-items: start; }
+.about-text p { color: var(--muted); font-size: 14.5px; line-height: 1.9; margin-bottom: 18px; }
+.about-text strong { color: var(--ink); }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--light); margin-top: 44px; }
+.stat { background: var(--cream); padding: 22px 16px; text-align: center; }
+.stat-n { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 300; line-height: 1; display: block; }
+.stat-n em { color: var(--warm); font-style: normal; }
+.stat-l { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 5px; display: block; }
+
+/* SKILLS */
+.skills-col h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; margin-bottom: 24px; }
+.sk { margin-bottom: 16px; }
+.sk-row { display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; margin-bottom: 5px; }
+.sk-pct { color: var(--warm); }
+.sk-bar { height: 2px; background: var(--light); }
+.sk-fill { height: 100%; background: linear-gradient(to right, var(--warm), var(--accent)); width: 0; transition: width 1.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.ai-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm); font-weight: 500; margin: 28px 0 12px; }
+.ai-badges { display: flex; flex-wrap: wrap; gap: 7px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 5px 13px; border: 1px solid var(--light); color: var(--ink); transition: all 0.3s; }
+.badge:hover { border-color: var(--warm); color: var(--warm); }
+.bdot { width: 6px; height: 6px; border-radius: 50%; background: var(--warm); animation: pulse 2s ease-in-out infinite; }
+
+/* EXPERIENCE */
+.exp-section { background: var(--ink); color: var(--cream); }
+.exp-section .sec-label { color: var(--warm); }
+.exp-section .sec-label::after { background: var(--warm); }
+.exp-section .sec-title { color: var(--cream); }
+.exp-section .sec-title em { color: var(--warm); }
+.timeline { position: relative; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: rgba(245,240,232,0.1); }
+.tl-item { padding: 0 0 48px 44px; position: relative; opacity: 0; transform: translateX(-18px); transition: opacity 0.7s, transform 0.7s; }
+.tl-item.vis { opacity: 1; transform: none; }
+.tl-dot { position: absolute; left: -5px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--warm); border: 2px solid var(--ink); }
+.tl-period { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm); margin-bottom: 7px; display: block; }
+.tl-role { font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 400; color: var(--cream); line-height: 1.2; margin-bottom: 3px; }
+.tl-company { font-size: 13px; color: rgba(245,240,232,0.4); margin-bottom: 12px; }
+.tl-company a { color: var(--warm); text-decoration: none; }
+.tl-company a:hover { text-decoration: underline; }
+.tl-desc { font-size: 13.5px; color: rgba(245,240,232,0.6); line-height: 1.8; max-width: 540px; }
+
+/* AI SECTION */
+.ai-section { background: var(--ink); color: var(--cream); padding: 96px 60px; }
+.ai-section .sec-label { color: var(--warm); }
+.ai-section .sec-label::after { background: var(--warm); }
+.ai-section .sec-title { color: var(--cream); }
+.ai-section .sec-title em { color: var(--warm); }
+.ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(245,240,232,0.05); }
+.ai-card { background: rgba(20,14,6,0.9); padding: 34px 30px; border: 1px solid rgba(245,240,232,0.06); transition: background 0.3s, border-color 0.3s; }
+.ai-card:hover { background: rgba(196,149,106,0.07); border-color: rgba(196,149,106,0.25); }
+.ai-icon { width: 42px; height: 42px; border-radius: 50%; background: rgba(196,149,106,0.12); border: 1px solid rgba(196,149,106,0.25); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.ai-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: var(--cream); margin-bottom: 10px; line-height: 1.2; }
+.ai-card p { font-size: 13px; color: rgba(245,240,232,0.5); line-height: 1.8; }
+.ai-tag { display: inline-block; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--warm); border: 1px solid rgba(196,149,106,0.28); padding: 3px 9px; margin-top: 12px; margin-right: 5px; }
+
+/* PROJECTS */
+.proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--light); }
+.proj-card { background: var(--cream); padding: 34px 30px; position: relative; overflow: hidden; transition: background 0.3s; }
+.proj-card:hover { background: #F8F4EE; }
+.proj-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--warm), var(--accent)); transform: scaleX(0); transition: transform 0.4s; }
+.proj-card:hover::after { transform: scaleX(1); }
+.proj-num { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: rgba(196,149,106,0.1); line-height: 1; position: absolute; top: 18px; right: 22px; }
+.proj-tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--warm); margin-bottom: 12px; display: block; }
+.proj-title { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; line-height: 1.25; margin-bottom: 9px; }
+.proj-desc { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
+.proj-links { display: flex; flex-wrap: wrap; gap: 7px; }
+.proj-link { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 1px solid var(--light); padding: 5px 11px; transition: all 0.3s; }
+.proj-link:hover { background: var(--warm); color: white; border-color: var(--warm); }
+
+/* EDUCATION */
+.edu-section { background: var(--light); }
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--cream); }
+.edu-card { background: var(--light); padding: 34px 38px; transition: background 0.3s; }
+.edu-card:hover { background: var(--cream); }
+.edu-year { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--warm); margin-bottom: 10px; display: block; }
+.edu-deg { font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 400; line-height: 1.25; margin-bottom: 7px; }
+.edu-school { font-size: 13px; color: var(--muted); }
+.edu-school a { color: var(--warm); text-decoration: none; }
+
+/* CERTS */
+.cert-section { background: var(--cream); }
+.cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--light); }
+.cert-card { background: var(--cream); padding: 26px 30px; display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); transition: background 0.3s; }
+.cert-card:hover { background: #F8F4EE; }
+.cert-icon { width: 40px; height: 40px; background: var(--warm); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cert-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+.cert-sub { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm); }
+
+/* CONTACT */
+.contact-section { background: var(--ink); color: var(--cream); text-align: center; padding: 110px 60px; position: relative; overflow: hidden; }
+.contact-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, rgba(196,149,106,0.12) 0%, transparent 60%); pointer-events: none; }
+.contact-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 6vw, 84px); font-weight: 300; line-height: 1; letter-spacing: -0.03em; margin-bottom: 18px; position: relative; }
+.contact-section h2 em { color: var(--warm); font-style: italic; }
+.contact-sub { font-size: 15px; color: rgba(245,240,232,0.4); margin-bottom: 14px; position: relative; }
+.contact-email { display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: clamp(17px, 2.4vw, 28px); color: var(--warm); text-decoration: none; margin-bottom: 10px; position: relative; transition: opacity 0.3s; }
+.contact-email:hover { opacity: 0.7; }
+.contact-phone { display: block; font-size: 14px; color: rgba(245,240,232,0.4); margin-bottom: 44px; position: relative; }
+.c-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; position: relative; }
+.c-btn { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 28px; border: 1px solid rgba(245,240,232,0.18); color: var(--cream); text-decoration: none; display: inline-flex; align-items: center; gap: 9px; transition: all 0.3s; }
+.c-btn:hover { background: var(--warm); border-color: var(--warm); color: var(--ink); transform: translateY(-2px); }
+.c-btn.main { background: var(--warm); border-color: var(--warm); color: var(--ink); }
+.c-btn.main:hover { background: var(--accent); border-color: var(--accent); }
+
+footer { background: var(--ink); border-top: 1px solid rgba(245,240,232,0.07); padding: 22px 60px; display: flex; justify-content: space-between; align-items: center; }
+footer p { font-size: 12px; color: rgba(245,240,232,0.28); letter-spacing: 0.04em; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.65); } }
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.vis { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  nav { padding: 18px 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 110px 24px 72px; }
+  .section, .ai-section { padding: 68px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 44px; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .ai-grid, .proj-grid, .cert-grid { grid-template-columns: 1fr; }
+  .edu-grid { grid-template-columns: 1fr; }
+  .contact-section { padding: 72px 24px; }
+  footer { padding: 20px 24px; flex-direction: column; gap: 6px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <span class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Aditi Bhalla</span>
+  <ul class="nav-links">
+    <li><a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a></li>
+    <li><a onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">Experience</a></li>
+    <li><a onclick="document.getElementById('ai-workflow').scrollIntoView({behavior:'smooth'})">AI Workflow</a></li>
+    <li><a onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projects</a></li>
+    <li><a onclick="document.getElementById('education').scrollIntoView({behavior:'smooth'})">Education</a></li>
+    <li><a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">AI-Powered Product Owner · Open to PM / PO Opportunities</p>
+    <h1 class="hero-name">Aditi<br><em>Bhalla</em></h1>
+    <p class="hero-role">Product Owner · AI Product Management</p>
+    <p class="hero-desc">AI-augmented Product Owner leveraging LLMs — ChatGPT &amp; Claude — to accelerate PRD writing, user story creation, and spec documentation. Technical background in software engineering combined with certified product expertise to deliver data-informed, user-centric products.</p>
+    <div class="hero-contact">
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        <a href="mailto:aditi.amitbhalla@gmail.com">aditi.amitbhalla@gmail.com</a>
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5.05 2 2 0 0 1 3.57 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.46 18l.46-1.08z"/></svg>
+        +1 608 320 0918
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Sun Prairie, WI, USA
+      </span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-wrap">
+      <img src="https://static.wixstatic.com/media/36e991_095d6c81e06a4671a8dbc0645226252b~mv2.jpeg" alt="Aditi Bhalla" onerror="this.style.display='none';document.querySelector('.hero-initials').style.display='block'">
+      <div class="hero-initials">AB</div>
+    </div>
+    <div class="hero-overlay"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>AI Product Management</span><span class="dot"> ✦ </span>
+    <span>LLM · ChatGPT · Claude</span><span class="dot"> ✦ </span>
+    <span>NLP-Assisted Spec Writing</span><span class="dot"> ✦ </span>
+    <span>Agile &amp; Scrum</span><span class="dot"> ✦ </span>
+    <span>Backlog Grooming</span><span class="dot"> ✦ </span>
+    <span>User Story Mapping</span><span class="dot"> ✦ </span>
+    <span>CSPO · PSM1 · CAPM · PSPO1</span><span class="dot"> ✦ </span>
+    <span>Requirement Gathering</span><span class="dot"> ✦ </span>
+    <span>Roadmapping</span><span class="dot"> ✦ </span>
+    <span>Data Analysis</span><span class="dot"> ✦ </span>
+    <span>AI Product Management</span><span class="dot"> ✦ </span>
+    <span>LLM · ChatGPT · Claude</span><span class="dot"> ✦ </span>
+    <span>NLP-Assisted Spec Writing</span><span class="dot"> ✦ </span>
+    <span>Agile &amp; Scrum</span><span class="dot"> ✦ </span>
+    <span>Backlog Grooming</span><span class="dot"> ✦ </span>
+    <span>User Story Mapping</span><span class="dot"> ✦ </span>
+    <span>CSPO · PSM1 · CAPM · PSPO1</span><span class="dot"> ✦ </span>
+    <span>Requirement Gathering</span><span class="dot"> ✦ </span>
+    <span>Roadmapping</span><span class="dot"> ✦ </span>
+    <span>Data Analysis</span><span class="dot"> ✦ </span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="sec-label">About Me</div>
+  <div class="about-grid">
+    <div class="reveal">
+      <h2 class="sec-title">Turning ambiguity<br>into <em>clear product vision</em></h2>
+      <p>I'm an AI-augmented Product Owner who uses LLMs — including <strong>ChatGPT</strong> and <strong>Claude</strong> — as a core part of my daily workflow. I leverage these tools to draft PRDs, generate user stories with acceptance criteria, write product specs, and synthesize user research at speed — without sacrificing quality.</p>
+      <p>With a strong technical background in software engineering and certifications spanning Scrum, SAFe, and AI Product Management, I bridge the gap between engineering teams and business stakeholders — driving Agile delivery grounded in data and shaped by real user needs.</p>
+      <div class="stats-row">
+        <div class="stat"><span class="stat-n">5<em>+</em></span><span class="stat-l">Years in Tech</span></div>
+        <div class="stat"><span class="stat-n">6<em>+</em></span><span class="stat-l">Certifications</span></div>
+        <div class="stat"><span class="stat-n">9<em>+</em></span><span class="stat-l">Projects</span></div>
+        <div class="stat"><span class="stat-n">4<em>+</em></span><span class="stat-l">Roles</span></div>
+      </div>
+    </div>
+    <div class="skills-col reveal" style="transition-delay:0.2s">
+      <h3>Core Skills</h3>
+      <div class="sk"><div class="sk-row"><span>AI-Assisted Spec Writing</span><span class="sk-pct">90%</span></div><div class="sk-bar"><div class="sk-fill" data-w="90"></div></div></div>
+      <div class="sk"><div class="sk-row"><span>Product Management &amp; PRDs</span><span class="sk-pct">92%</span></div><div class="sk-bar"><div class="sk-fill" data-w="92"></div></div></div>
+      <div class="sk"><div class="sk-row"><span>Requirement &amp; User Story Writing</span><span class="sk-pct">90%</span></div><div class="sk-bar"><div class="sk-fill" data-w="90"></div></div></div>
+      <div class="sk"><div class="sk-row"><span>Backlog Grooming</span><span class="sk-pct">88%</span></div><div class="sk-bar"><div class="sk-fill" data-w="88"></div></div></div>
+      <div class="sk"><div class="sk-row"><span>Data Analysis &amp; Visualization</span><span class="sk-pct">82%</span></div><div class="sk-bar"><div class="sk-fill" data-w="82"></div></div></div>
+      <div class="sk"><div class="sk-row"><span>Product Roadmapping</span><span class="sk-pct">87%</span></div><div class="sk-bar"><div class="sk-fill" data-w="87"></div></div></div>
+      <p class="ai-label">AI Tools I Use</p>
+      <div class="ai-badges">
+        <span class="badge"><span class="bdot"></span>ChatGPT</span>
+        <span class="badge"><span class="bdot"></span>Claude</span>
+        <span class="badge"><span class="bdot"></span>NLP / LLMs</span>
+        <span class="badge"><span class="bdot"></span>Google AutoML</span>
+        <span class="badge"><span class="bdot"></span>IBM Watson</span>
+        <span class="badge"><span class="bdot"></span>Prompt Engineering</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section exp-section" id="experience">
+  <div class="sec-label">Experience</div>
+  <h2 class="sec-title reveal">Where I've<br><em>made impact</em></h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <span class="tl-period">Nov 2022 – May 2023</span>
+      <div class="tl-role">Product Owner</div>
+      <div class="tl-company"><a href="https://humanhealthproject.org/" target="_blank">Human Health Project</a> · Contract</div>
+      <p class="tl-desc">Led product ownership for the Real World Data (RWD) initiative — bridging clinical trial research and patient outcomes in real-world settings. Defined PRDs, personas, customer journey maps, and mockups using LLMs to accelerate documentation. Enabled patients to compare treatment outcomes in real time.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <span class="tl-period">Aug 2022 – Jan 2023</span>
+      <div class="tl-role">Freelance Product Consultant</div>
+      <div class="tl-company"><a href="https://www.freelancer.com/u/aditiamitbhalla" target="_blank">Freelancer.com</a> · Self-employed</div>
+      <p class="tl-desc">Provided product management consulting across multiple clients. Leveraged ChatGPT and Claude to rapidly produce PRDs, backlog items, and roadmap documentation — delivering high-quality outputs with faster turnaround times.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <span class="tl-period">Jun 2015 – May 2017</span>
+      <div class="tl-role">Team Lead / Software Engineer</div>
+      <div class="tl-company"><a href="https://www.keycomputers.co.uk/" target="_blank">Key Computer</a> · Full-time</div>
+      <p class="tl-desc">Led a development team delivering software solutions, managing sprint cycles, conducting code reviews, and translating business requirements into technical deliverables. Built the engineering empathy that now makes me a stronger product leader.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <span class="tl-period">Apr 2013 – Jun 2015</span>
+      <div class="tl-role">Associate Software Engineer</div>
+      <div class="tl-company"><a href="https://thoughtfocus.com/" target="_blank">ThoughtFocus</a> · Full-time</div>
+      <p class="tl-desc">Developed and maintained enterprise software applications in cross-functional Agile teams. Built a deep technical foundation that directly informs my product-first mindset today.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AI WORKFLOW -->
+<section class="ai-section" id="ai-workflow">
+  <div class="sec-label">AI-Powered Workflow</div>
+  <h2 class="sec-title reveal">How I use <em>AI &amp; LLMs</em><br>to ship faster</h2>
+  <div class="ai-grid">
+    <div class="ai-card reveal">
+      <div class="ai-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C4956A" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <h3>PRD &amp; Spec Writing</h3>
+      <p>I use ChatGPT and Claude to draft Product Requirement Documents — prompting with problem statements, personas, and goals to generate structured specs in a fraction of the time.</p>
+      <span class="ai-tag">ChatGPT</span><span class="ai-tag">Claude</span>
+    </div>
+    <div class="ai-card reveal" style="transition-delay:0.12s">
+      <div class="ai-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C4956A" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <h3>User Stories &amp; Acceptance Criteria</h3>
+      <p>LLMs help me rapidly convert ambiguous requirements into well-structured user stories with clear, testable acceptance criteria for engineering teams.</p>
+      <span class="ai-tag">LLM Prompting</span><span class="ai-tag">NLP</span>
+    </div>
+    <div class="ai-card reveal" style="transition-delay:0.24s">
+      <div class="ai-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C4956A" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <h3>User Research Synthesis</h3>
+      <p>I feed raw interview notes into LLMs to rapidly identify themes, pain points, and opportunities — turning hours of synthesis into actionable product insights.</p>
+      <span class="ai-tag">ChatGPT</span><span class="ai-tag">Claude</span>
+    </div>
+    <div class="ai-card reveal" style="transition-delay:0.12s">
+      <div class="ai-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C4956A" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h3>Backlog Refinement</h3>
+      <p>Using AI to help prioritize backlog items — generating WSJF scores, effort estimates, and dependency analyses that keep sprint planning aligned to business outcomes.</p>
+      <span class="ai-tag">LLM Prompting</span><span class="ai-tag">WSJF</span>
+    </div>
+    <div class="ai-card reveal" style="transition-delay:0.24s">
+      <div class="ai-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C4956A" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+      <h3>Roadmap Narratives</h3>
+      <p>I leverage Claude to turn spreadsheet roadmaps into compelling executive narratives — crafting stakeholder-ready presentations that communicate the "why" behind every product decision.</p>
+      <span class="ai-tag">Claude</span><span class="ai-tag">Storytelling</span>
+    </div>
+    <div class="ai-card reveal" style="transition-delay:0.36s">
+      <div class="ai-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C4956A" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <h3>Chatbot &amp; NLP Products</h3>
+      <p>Hands-on experience building NLP-powered chatbots using IBM Watson — managing the full product lifecycle from intent design and training data to deployment.</p>
+      <span class="ai-tag">IBM Watson</span><span class="ai-tag">NLP</span><span class="ai-tag">Google AutoML</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="sec-label">Selected Projects</div>
+  <h2 class="sec-title reveal">Work I'm<br><em>proud of</em></h2>
+  <div class="proj-grid">
+    <div class="proj-card reveal">
+      <span class="proj-num">01</span>
+      <span class="proj-tag">Product Ownership · Healthcare</span>
+      <h3 class="proj-title">Real World Data — HHP Mobile App</h3>
+      <p class="proj-desc">Defined product requirements for a mobile app bridging clinical trial research and real-world patient outcomes. Used LLMs to accelerate PRD drafting and journey mapping.</p>
+      <div class="proj-links">
+        <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_88590856009642edbad78dee207e9574.docx" class="proj-link" target="_blank">PRD</a>
+        <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_f380b06ba7104a88b169cf9650cb20ea.pdf" class="proj-link" target="_blank">Persona</a>
+        <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_dcf2f27f5c9e4b80a738343aec098eda.pdf" class="proj-link" target="_blank">Journey Map</a>
+        <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_5208e21c8e5e4035973fb55f6e079bb0.pdf" class="proj-link" target="_blank">Mockups</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" style="transition-delay:0.1s">
+      <span class="proj-num">02</span>
+      <span class="proj-tag">Backlog Management · Agile</span>
+      <h3 class="proj-title">Smart Weather App</h3>
+      <p class="proj-desc">World's most accurate forecaster — tracks daily forecasts, manages multiple locations, and sends storm alerts. Full product backlog managed in Jira.</p>
+      <div class="proj-links">
+        <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_08dd0759e42e4ba28e710aef18d99936.pdf" class="proj-link" target="_blank">Product Doc</a>
+        <a href="https://aditiamitbhalla.atlassian.net/jira/software/c/projects/SW/boards/18/backlog" class="proj-link" target="_blank">Jira Backlog</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" style="transition-delay:0.2s">
+      <span class="proj-num">03</span>
+      <span class="proj-tag">Prioritization · WSJF</span>
+      <h3 class="proj-title">Uber Feature Prioritization</h3>
+      <p class="proj-desc">Prioritized Uber App backlog to drive maximum revenue for the next sprint (150 story points) using the WSJF technique.</p>
+      <div class="proj-links">
+        <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_c84bd5d197f84d8c8e4a1abd33c67740.pdf" class="proj-link" target="_blank">WSJF Analysis</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" style="transition-delay:0.1s">
+      <span class="proj-num">04</span>
+      <span class="proj-tag">ML · AI · Google AutoML</span>
+      <h3 class="proj-title">CCPA MI Model — Google AutoML</h3>
+      <p class="proj-desc">Built a machine learning model using Google AutoML for CCPA data classification — demonstrating hands-on AI product management skills.</p>
+      <div class="proj-links">
+        <a href="https://youtu.be/VX2MfgoCJQM" class="proj-link" target="_blank">Watch Demo</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" style="transition-delay:0.2s">
+      <span class="proj-num">05</span>
+      <span class="proj-tag">API Documentation · Swagger</span>
+      <h3 class="proj-title">Open Weather API Documentation</h3>
+      <p class="proj-desc">Authored comprehensive API documentation for the Open Weather API using Swagger/OpenAPI — showcasing technical writing and developer-facing product skills.</p>
+      <div class="proj-links">
+        <a href="https://app.swaggerhub.com/apis-docs/ADITIAMITBHALLA/WeatherApi/1.0.0" class="proj-link" target="_blank">View API Docs</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" style="transition-delay:0.3s">
+      <span class="proj-num">06</span>
+      <span class="proj-tag">Chatbot · IBM Watson · NLP</span>
+      <h3 class="proj-title">Dell Chatbot — IBM Watson</h3>
+      <p class="proj-desc">Designed and documented a conversational AI chatbot for Dell using IBM Watson. Delivered product wiki, backlog, and live demo.</p>
+      <div class="proj-links">
+        <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_621aed69bb44445da160c1627f2aea15.pdf" class="proj-link" target="_blank">Wiki</a>
+        <a href="https://youtu.be/rwvwaIcfQLw" class="proj-link" target="_blank">Demo</a>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <span class="proj-num">07</span>
+      <span class="proj-tag">User Research</span>
+      <h3 class="proj-title">User Interview Analysis</h3>
+      <p class="proj-desc">Conducted structured user interviews and synthesized insights using AI tools — turning qualitative data into actionable product findings.</p>
+      <div class="proj-links">
+        <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_4c36482d42d443dfb793a1cdea5a99df.pdf" class="proj-link" target="_blank">View Analysis</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" style="transition-delay:0.1s">
+      <span class="proj-num">08</span>
+      <span class="proj-tag">Analytics · Dashboards</span>
+      <h3 class="proj-title">Data Visualization — IBM Cognos &amp; Excel</h3>
+      <p class="proj-desc">Built BI dashboards using IBM Cognos and MS Excel to surface key product metrics, sales trends, and operational KPIs for stakeholders.</p>
+      <div class="proj-links">
+        <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_5c7596f069024471be1a24a3564e17d8.pdf" class="proj-link" target="_blank">Cognos</a>
+        <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_5e29fdb2f84e4c0690c73a77fa148833.xlsx" class="proj-link" target="_blank">Excel</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" style="transition-delay:0.2s">
+      <span class="proj-num">09</span>
+      <span class="proj-tag">Product Strategy · Roadmapping</span>
+      <h3 class="proj-title">Product Roadmap</h3>
+      <p class="proj-desc">Developed a detailed product roadmap aligning sprint backlogs with long-term business strategy, covering IP cycles and AI-assisted delivery planning.</p>
+      <div class="proj-links">
+        <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_f59fbb53db104caab68cb1ebbb838b12.xlsx" class="proj-link" target="_blank">View Roadmap</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section edu-section" id="education">
+  <div class="sec-label">Education</div>
+  <h2 class="sec-title reveal">Academic &amp;<br><em>professional foundations</em></h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <span class="edu-year">Jan 2023 – Sep 2023</span>
+      <div class="edu-deg">AI Product Management Specialization</div>
+      <div class="edu-school"><a href="https://coursera.org/verify/specialization/M87T48HBR9V4" target="_blank">Duke University · Coursera ↗</a></div>
+    </div>
+    <div class="edu-card reveal" style="transition-delay:0.15s">
+      <span class="edu-year">Jan 2022 – Jun 2022</span>
+      <div class="edu-deg">Product Management Certification</div>
+      <div class="edu-school"><a href="https://www.credential.net/b87e7161-ff6b-4fdc-a163-ef3dd219732e" target="_blank">Duke University · UpGrad ↗</a></div>
+    </div>
+    <div class="edu-card reveal" style="transition-delay:0.3s">
+      <span class="edu-year">2004 – 2007</span>
+      <div class="edu-deg">MCA — Master of Computer Applications</div>
+      <div class="edu-school">IGNOU</div>
+    </div>
+    <div class="edu-card reveal" style="transition-delay:0.45s">
+      <span class="edu-year">2000 – 2003</span>
+      <div class="edu-deg">BCA — Bachelor of Computer Applications</div>
+      <div class="edu-school">GNDU</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section cert-section">
+  <div class="sec-label">Licences &amp; Certifications</div>
+  <h2 class="sec-title reveal">Industry<br><em>credentials</em></h2>
+  <div class="cert-grid">
+    <a href="https://sgq.io/uCBdppn" class="cert-card reveal" target="_blank">
+      <div class="cert-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><div class="cert-name">CSPO</div><div class="cert-sub">Certified Scrum Product Owner ↗</div></div>
+    </a>
+    <a href="https://www.credly.com/badges/ecc3de72-b106-48cf-b69c-5e1038685d25/public_url" class="cert-card reveal" style="transition-delay:0.1s" target="_blank">
+      <div class="cert-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><div class="cert-name">PSM I</div><div class="cert-sub">Professional Scrum Master ↗</div></div>
+    </a>
+    <a href="https://www.credly.com/badges/d9a765bf-4f8f-44c2-9438-cc9ac01a9f62/public_url" class="cert-card reveal" style="transition-delay:0.2s" target="_blank">
+      <div class="cert-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><div class="cert-name">CAPM</div><div class="cert-sub">Certified Associate in PM ↗</div></div>
+    </a>
+    <a href="https://www.credly.com/badges/5e646722-196f-40e1-b0f5-d3521f07b487/public_url" class="cert-card reveal" target="_blank">
+      <div class="cert-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><div class="cert-name">PSPO I</div><div class="cert-sub">Professional Scrum PO ↗</div></div>
+    </a>
+    <a href="https://www.credly.com/badges/c8972af0-40ff-415b-9266-b1f0988ac285/public_url" class="cert-card reveal" style="transition-delay:0.1s" target="_blank">
+      <div class="cert-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><div class="cert-name">POPM 6.0</div><div class="cert-sub">Product Owner/PM SAFe ↗</div></div>
+    </a>
+    <a href="https://www.credly.com/badges/94a6c85e-8d56-4d1a-8ab2-7e6afe31abe5/public_url" class="cert-card reveal" style="transition-delay:0.2s" target="_blank">
+      <div class="cert-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><div class="cert-name">Data Visualization</div><div class="cert-sub">Dashboard Essentials ↗</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-glow"></div>
+  <h2 class="reveal">Let's build<br><em>something great</em></h2>
+  <p class="contact-sub reveal" style="transition-delay:0.15s">Open to AI Product Owner / Product Manager roles where I can bring LLM-powered workflows to your team.</p>
+  <a href="mailto:aditi.amitbhalla@gmail.com" class="contact-email reveal" style="transition-delay:0.25s">aditi.amitbhalla@gmail.com</a>
+  <span class="contact-phone reveal" style="transition-delay:0.3s">+1 608 320 0918 · Sun Prairie, WI, USA</span>
+  <div class="c-btns reveal" style="transition-delay:0.4s">
+    <a href="https://linkedin.com/in/aditibhallapo" class="c-btn main" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Aditi Bhalla. All rights reserved.</p>
+  <p>Sun Prairie, WI · aditi.amitbhalla@gmail.com</p>
+</footer>
+
+<script>
+  // Nav scroll effect
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Reveal on scroll
+  var reveals = document.querySelectorAll('.reveal, .tl-item');
+  var revealObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.classList.add('vis');
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(function(el) { revealObs.observe(el); });
+
+  // Skill bars
+  var skillCols = document.querySelectorAll('.skills-col');
+  var skillObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var fills = e.target.querySelectorAll('.sk-fill');
+        fills.forEach(function(f, i) {
+          var w = f.getAttribute('data-w') || '80';
+          setTimeout(function() { f.style.width = w + '%'; }, i * 130);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  skillCols.forEach(function(el) { skillObs.observe(el); });
+</script>
+</body>
+</html>
