@@ -18,7 +18,6 @@
 html { scroll-behavior: smooth; }
 body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; overflow-x: hidden; }
 
-/* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 60px; transition: background 0.4s, padding 0.4s; }
 nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); padding: 16px 60px; border-bottom: 1px solid var(--light); }
 .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--ink); cursor: pointer; }
@@ -28,7 +27,6 @@ nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); 
 .nav-links a:hover { color: var(--ink); }
 .nav-links a:hover::after { width: 100%; }
 
-/* HERO */
 .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
 .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 140px 60px 80px; z-index: 2; }
 .hero-tag { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm); font-weight: 500; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
@@ -46,20 +44,17 @@ nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); 
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, var(--cream) 0%, rgba(245,240,232,0.05) 40%); }
 .hero-initials { font-family: 'Cormorant Garamond', serif; font-size: 180px; font-weight: 300; color: rgba(255,255,255,0.25); user-select: none; display: none; }
 
-/* TICKER */
 .ticker { background: var(--ink); padding: 13px 0; overflow: hidden; white-space: nowrap; }
 .ticker-track { display: inline-block; animation: ticker 30s linear infinite; }
 .ticker-track span { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,232,0.55); margin-right: 52px; }
 .ticker-track .dot { color: var(--warm); opacity: 1; }
 
-/* SECTIONS */
 .section { padding: 96px 60px; }
 .sec-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm); font-weight: 500; margin-bottom: 44px; display: flex; align-items: center; gap: 14px; }
 .sec-label::after { content: ''; width: 46px; height: 1px; background: var(--warm); opacity: 0.4; }
 .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 3.8vw, 52px); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 52px; }
 .sec-title em { font-style: italic; color: var(--warm); }
 
-/* ABOUT */
 .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 72px; align-items: start; }
 .about-text p { color: var(--muted); font-size: 14.5px; line-height: 1.9; margin-bottom: 18px; }
 .about-text strong { color: var(--ink); }
@@ -69,7 +64,6 @@ nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); 
 .stat-n em { color: var(--warm); font-style: normal; }
 .stat-l { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 5px; display: block; }
 
-/* SKILLS */
 .skills-col h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; margin-bottom: 24px; }
 .sk { margin-bottom: 16px; }
 .sk-row { display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; margin-bottom: 5px; }
@@ -82,7 +76,6 @@ nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); 
 .badge:hover { border-color: var(--warm); color: var(--warm); }
 .bdot { width: 6px; height: 6px; border-radius: 50%; background: var(--warm); animation: pulse 2s ease-in-out infinite; }
 
-/* EXPERIENCE */
 .exp-section { background: var(--ink); color: var(--cream); }
 .exp-section .sec-label { color: var(--warm); }
 .exp-section .sec-label::after { background: var(--warm); }
@@ -100,7 +93,6 @@ nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); 
 .tl-company a:hover { text-decoration: underline; }
 .tl-desc { font-size: 13.5px; color: rgba(245,240,232,0.6); line-height: 1.8; max-width: 540px; }
 
-/* AI SECTION */
 .ai-section { background: var(--ink); color: var(--cream); padding: 96px 60px; }
 .ai-section .sec-label { color: var(--warm); }
 .ai-section .sec-label::after { background: var(--warm); }
@@ -114,7 +106,6 @@ nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); 
 .ai-card p { font-size: 13px; color: rgba(245,240,232,0.5); line-height: 1.8; }
 .ai-tag { display: inline-block; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--warm); border: 1px solid rgba(196,149,106,0.28); padding: 3px 9px; margin-top: 12px; margin-right: 5px; }
 
-/* PROJECTS */
 .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--light); }
 .proj-card { background: var(--cream); padding: 34px 30px; position: relative; overflow: hidden; transition: background 0.3s; }
 .proj-card:hover { background: #F8F4EE; }
@@ -128,7 +119,6 @@ nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); 
 .proj-link { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 1px solid var(--light); padding: 5px 11px; transition: all 0.3s; }
 .proj-link:hover { background: var(--warm); color: white; border-color: var(--warm); }
 
-/* EDUCATION */
 .edu-section { background: var(--light); }
 .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--cream); }
 .edu-card { background: var(--light); padding: 34px 38px; transition: background 0.3s; }
@@ -138,7 +128,6 @@ nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); 
 .edu-school { font-size: 13px; color: var(--muted); }
 .edu-school a { color: var(--warm); text-decoration: none; }
 
-/* CERTS */
 .cert-section { background: var(--cream); }
 .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--light); }
 .cert-card { background: var(--cream); padding: 26px 30px; display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); transition: background 0.3s; }
@@ -147,7 +136,6 @@ nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); 
 .cert-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
 .cert-sub { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm); }
 
-/* CONTACT */
 .contact-section { background: var(--ink); color: var(--cream); text-align: center; padding: 110px 60px; position: relative; overflow: hidden; }
 .contact-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, rgba(196,149,106,0.12) 0%, transparent 60%); pointer-events: none; }
 .contact-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 6vw, 84px); font-weight: 300; line-height: 1; letter-spacing: -0.03em; margin-bottom: 18px; position: relative; }
@@ -165,7 +153,6 @@ nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); 
 footer { background: var(--ink); border-top: 1px solid rgba(245,240,232,0.07); padding: 22px 60px; display: flex; justify-content: space-between; align-items: center; }
 footer p { font-size: 12px; color: rgba(245,240,232,0.28); letter-spacing: 0.04em; }
 
-/* ANIMATIONS */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -191,7 +178,6 @@ footer p { font-size: 12px; color: rgba(245,240,232,0.28); letter-spacing: 0.04e
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
   <span class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Aditi Bhalla</span>
   <ul class="nav-links">
@@ -212,18 +198,9 @@ footer p { font-size: 12px; color: rgba(245,240,232,0.28); letter-spacing: 0.04e
     <p class="hero-role">Product Owner · AI Product Management</p>
     <p class="hero-desc">AI-augmented Product Owner leveraging LLMs — ChatGPT &amp; Claude — to accelerate PRD writing, user story creation, and spec documentation. Technical background in software engineering combined with certified product expertise to deliver data-informed, user-centric products.</p>
     <div class="hero-contact">
-      <span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-        <a href="mailto:aditi.amitbhalla@gmail.com">aditi.amitbhalla@gmail.com</a>
-      </span>
-      <span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5.05 2 2 0 0 1 3.57 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.46 18l.46-1.08z"/></svg>
-        +1 608 320 0918
-      </span>
-      <span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Sun Prairie, WI, USA
-      </span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg><a href="mailto:aditi.amitbhalla@gmail.com">aditi.amitbhalla@gmail.com</a></span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5.05 2 2 0 0 1 3.57 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.46 18l.46-1.08z"/></svg>+1 608 320 0918</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Sun Prairie, WI, USA</span>
     </div>
   </div>
   <div class="hero-right">
@@ -363,12 +340,12 @@ footer p { font-size: 12px; color: rgba(245,240,232,0.28); letter-spacing: 0.04e
       <p>Using AI to help prioritize backlog items — generating WSJF scores, effort estimates, and dependency analyses that keep sprint planning aligned to business outcomes.</p>
       <span class="ai-tag">LLM Prompting</span><span class="ai-tag">WSJF</span>
     </div>
-
-    <div class="ai-card reveal" style="transition-delay:0.36s">
+    <div class="ai-card reveal" style="transition-delay:0.24s">
       <div class="ai-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C4956A" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
       <h3>Chatbot &amp; NLP Products</h3>
-      <p>Hands-on experience building NLP-powered chatbots using IBM Watson — managing the full product lifecycle from intent design and training data to deployment.</p>
-
+      <p>Used ChatGPT and prompt engineering to create the product backlog for the Dell Chatbot.</p>
+      <span class="ai-tag">ChatGPT</span><span class="ai-tag">Prompt Engineering</span>
+    </div>
   </div>
 </section>
 
@@ -428,19 +405,18 @@ footer p { font-size: 12px; color: rgba(245,240,232,0.28); letter-spacing: 0.04e
     </div>
     <div class="proj-card reveal" style="transition-delay:0.3s">
       <span class="proj-num">06</span>
-      <span class="proj-tag">Chatbot · IBM Watson · NLP</span>
-      <h3 class="proj-title">Dell Chatbot — IBM Watson</h3>
-      <p class="proj-desc">Designed and documented a conversational AI chatbot for Dell using IBM Watson. Leveraged ChatGPT and prompt engineering to generate a structured product backlog — accelerating story creation and ensuring comprehensive coverage of user intents and edge cases. Delivered product wiki, backlog, and live demo.</p>
+      <span class="proj-tag">Chatbot · NLP</span>
+      <h3 class="proj-title">Dell Chatbot</h3>
+      <p class="proj-desc">Used ChatGPT and prompt engineering to create the product backlog for the Dell Chatbot — ensuring structured story creation and comprehensive coverage of user intents. Delivered product wiki and backlog.</p>
       <div class="proj-links">
         <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_621aed69bb44445da160c1627f2aea15.pdf" class="proj-link" target="_blank">Wiki</a>
-        <a href="https://youtu.be/rwvwaIcfQLw" class="proj-link" target="_blank">Demo</a>
       </div>
     </div>
     <div class="proj-card reveal">
       <span class="proj-num">07</span>
       <span class="proj-tag">User Research</span>
       <h3 class="proj-title">User Interview Analysis</h3>
-      <p class="proj-desc">Conducted structured user interviews and synthesized insights using AI tools — turning qualitative data into actionable product findings.</p>
+      <p class="proj-desc">Conducted structured user interviews and synthesized insights — turning qualitative data into actionable product findings.</p>
       <div class="proj-links">
         <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_4c36482d42d443dfb793a1cdea5a99df.pdf" class="proj-link" target="_blank">View Analysis</a>
       </div>
@@ -459,7 +435,7 @@ footer p { font-size: 12px; color: rgba(245,240,232,0.28); letter-spacing: 0.04e
       <span class="proj-num">09</span>
       <span class="proj-tag">Product Strategy · Roadmapping</span>
       <h3 class="proj-title">Product Roadmap</h3>
-      <p class="proj-desc">Developed a detailed product roadmap aligning sprint backlogs with long-term business strategy, covering IP cycles and AI-assisted delivery planning.</p>
+      <p class="proj-desc">Developed a detailed product roadmap aligning sprint backlogs with long-term business strategy, covering IP cycles and delivery planning.</p>
       <div class="proj-links">
         <a href="https://3cc3a561-eaf5-4297-a833-4072a70b9f2c.filesusr.com/ugd/36e991_f59fbb53db104caab68cb1ebbb838b12.xlsx" class="proj-link" target="_blank">View Roadmap</a>
       </div>
@@ -548,23 +524,16 @@ footer p { font-size: 12px; color: rgba(245,240,232,0.28); letter-spacing: 0.04e
 </footer>
 
 <script>
-  // Nav scroll effect
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function() {
     if (window.scrollY > 50) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
   });
-
-  // Reveal on scroll
   var reveals = document.querySelectorAll('.reveal, .tl-item');
   var revealObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) e.target.classList.add('vis');
-    });
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('vis'); });
   }, { threshold: 0.1 });
   reveals.forEach(function(el) { revealObs.observe(el); });
-
-  // Skill bars
   var skillCols = document.querySelectorAll('.skills-col');
   var skillObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
